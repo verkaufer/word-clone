@@ -1,6 +1,7 @@
 import React from "react";
+import { MAX_GUESS_LENGTH } from "../../constants";
 
-const INPUT_VALIDATION_REGEX = "[a-zA-Z]{5}";
+const INPUT_VALIDATION_REGEX = `[a-zA-Z]{${MAX_GUESS_LENGTH}}`;
 
 function GuessInput({ submitGuess }) {
 
