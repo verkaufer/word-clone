@@ -3,7 +3,6 @@ import React from "react";
 import GameOver from "../GameOver";
 import GuessInput from "../GuessInput";
 import History from "../History";
-import ResetButton from "../ResetButton";
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
@@ -20,7 +19,6 @@ function Game() {
   });
 
   const submitGuess = (newGuess) => {
-    console.info({ guess: newGuess });
     const newGuesses = [...guesses, newGuess];
     setGuesses(newGuesses);
     setGameOver(
@@ -37,9 +35,8 @@ function Game() {
   return (
     <>
       <History guesses={guesses} answer={answer} />
-      {gameOver ? <ResetButton handleReset={resetGame} /> : null}
       <GuessInput submitGuess={submitGuess} disabled={!!gameOver} />
-      {gameOver ? <GameOver gameResult={gameOver} /> : null}
+      {gameOver ? <GameOver gameResult={gameOver} handleReset={resetGame} /> : null}
     </>
   );
 }

@@ -19,16 +19,22 @@ import Banner from "../Banner";
 /**
  * Renders the win or lose banner after the game is over.
  * @param gameResult {GameOver}
+ * @param handleReset {() => void} callback to reset the game state
  * @return {JSX.Element}
  * @constructor
  */
-function GameOver({gameResult}) {
+function GameOver({gameResult, handleReset}) {
+
+    const bannerProps = {
+        action: handleReset,
+        actionButtonText: "Play again"
+    }
 
     switch (gameResult.type) {
         case "win":
-            return (<Win result={gameResult}/>)
+            return (<Win result={gameResult} {...bannerProps}/>)
         case "lose":
-            return (<Lose result={gameResult}/>)
+            return (<Lose result={gameResult} {...bannerProps} />)
         default:
             throw new Error("Invalid game state");
     }
@@ -37,13 +43,14 @@ function GameOver({gameResult}) {
 /**
  * Returns the "you won" banner.
  * @param result {GameWon}
+ * @param props {Object} Optional <Banner> props to control resetting the game state
  * @return {JSX.Element}
  * @constructor
  */
-function Win({result}) {
+function Win({result, ...props}) {
     const {guesses} = result.context;
     return (
-        <Banner variant={"happy"}>
+        <Banner variant={"happy"} action={props.action} actionButtonText={props.actionButtonText}>
             <p>
                 <strong>Congratulations!</strong> Got it in <strong>{guesses} guesses</strong>.
             </p>
@@ -54,13 +61,14 @@ function Win({result}) {
 /**
  * Returns the "you lost" banner with the correct answer.
  * @param result {GameLost}
+ * @param props Optional <Banner> props to control resetting the game state
  * @return {JSX.Element}
  * @constructor
  */
-function Lose({result}) {
+function Lose({result, ...props}) {
     const {answer} = result.context;
     return (
-        <Banner variant={"sad"}>
+        <Banner variant={"sad"} action={props.action} actionButtonText={props.actionButtonText}>
             <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>
         </Banner>
     );

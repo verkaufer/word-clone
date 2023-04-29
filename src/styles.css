@@ -187,7 +187,7 @@ h1 {
   color: white;
 }
 
-button.reset-game {
+.banner button {
     display: block;
     width: 100%;
     border: 2px solid var(--color-gray-300);
@@ -199,11 +199,6 @@ button.reset-game {
     color: var(--color-gray-900);
     font-weight: bold;
     background: var(--color-primary-500);
-}
-
-button.reset-game:hover,
-button.reset-game:active {
-    background: var(--color-primary-300);
 }
 
 .visually-hidden {
