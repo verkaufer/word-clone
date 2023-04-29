@@ -16,11 +16,11 @@ function Game() {
 
   const submitGuess = (newGuess) => {
     console.info({ guess: newGuess });
-    setGuesses((guesses) => [newGuess, ...guesses]);
+    setGuesses((guesses) => [...guesses, newGuess]);
   };
 
   return (<>
-    <History guesses={guesses} />
+    <History guesses={guesses} answer={answer}/>
     <GuessInput submitGuess={submitGuess} />
   </>);
 }
