@@ -1,4 +1,5 @@
 import React from "react";
+import Banner from "../Banner";
 
 /**
  * The "win" scenario for the game
@@ -31,7 +32,6 @@ function GameOver({gameResult}) {
         default:
             throw new Error("Invalid game state");
     }
-
 }
 
 /**
@@ -43,11 +43,11 @@ function GameOver({gameResult}) {
 function Win({result}) {
     const {guesses} = result.context;
     return (
-        <div className="happy banner">
+        <Banner variant={"happy"}>
             <p>
                 <strong>Congratulations!</strong> Got it in <strong>{guesses} guesses</strong>.
             </p>
-        </div>
+        </Banner>
     );
 }
 
@@ -60,9 +60,9 @@ function Win({result}) {
 function Lose({result}) {
     const {answer} = result.context;
     return (
-        <div className="sad banner">
+        <Banner variant={"sad"}>
             <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>
-        </div>
+        </Banner>
     );
 }
 
