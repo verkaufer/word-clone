@@ -3,8 +3,7 @@ import { MAX_GUESS_LENGTH } from "../../constants";
 
 const INPUT_VALIDATION_REGEX = `[a-zA-Z]{${MAX_GUESS_LENGTH}}`;
 
-function GuessInput({ submitGuess }) {
-
+function GuessInput({ submitGuess, disabled }) {
   const [guess, setGuess] = React.useState("");
 
   /**
@@ -14,7 +13,7 @@ function GuessInput({ submitGuess }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (guess.length < 5) {
-      window.alert("Please enter a 5-letter word. ")
+      window.alert("Please enter a 5-letter word. ");
       return;
     }
     submitGuess(guess);
@@ -39,10 +38,11 @@ function GuessInput({ submitGuess }) {
         pattern={INPUT_VALIDATION_REGEX}
         maxLength={5}
         value={guess}
-        onChange={handleInput} />
+        onChange={handleInput}
+        disabled={disabled}
+      />
     </form>
   );
-
 }
 
 export default GuessInput;

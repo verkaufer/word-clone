@@ -53,3 +53,16 @@ export function checkGuess(guess, answer) {
 
   return result;
 }
+
+/**
+ * Normalizes guess and answer, then returns if they are equal
+ * @param guess string
+ * @param answer string
+ * @return {boolean}
+ */
+export function guessedCorrectly(guess, answer) {
+    if(!guess) {
+        return false;
+    }
+    return guess.toUpperCase() === answer.toUpperCase();
+}
